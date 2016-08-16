@@ -1,12 +1,13 @@
 import os
 
 ELLIPSIS = u'\u2026'
+HOME_SYMBOL = u'\u2665'
 
 
 def replace_home_dir(cwd):
     home = os.getenv('HOME')
     if cwd.startswith(home):
-        return '~' + cwd[len(home):]
+        return HOME_SYMBOL + cwd[len(home):]
     return cwd
 
 
@@ -25,7 +26,7 @@ def split_path_into_names(cwd):
 def requires_special_home_display(name):
     """Returns true if the given directory name matches the home indicator and
     the chosen theme should use a special home indicator display."""
-    return (name == '~' and Color.HOME_SPECIAL_DISPLAY)
+    return (name == HOME_SYMBOL and Color.HOME_SPECIAL_DISPLAY)
 
 
 def maybe_shorten_name(powerline, name):
